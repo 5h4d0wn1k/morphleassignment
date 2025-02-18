@@ -29,9 +29,8 @@ def htop():
         </html>
         """
     except Exception as e:
-        app.logger.error(f"Error occurred: {e}")
-        return "Internal Server Error", 500
+        app.logger.error(f"Error occurred: {e}", exc_info=True)
+        return f"Internal Server Error: {e}", 500
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
